@@ -11,5 +11,6 @@ public interface EmployeService {
 	
 	
 	public List<Employe> getAllEmploye();
+	void saveEmploye(Employe employe);
 
 }

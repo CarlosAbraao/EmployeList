@@ -21,6 +21,12 @@ public class EmployeServiceImpl implements EmployeService{
 		// TODO Auto-generated method stub
 		return employeServiceImpl.findAll();
 	}
+
+	@Override
+	public void saveEmploye(Employe employe) {
+		this.employeServiceImpl.save(employe);
+		
+	}
 	
 	
 }
