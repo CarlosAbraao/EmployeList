@@ -1,6 +1,7 @@
 package com.devcarlos.employe.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,18 +15,36 @@ public class EmployeServiceImpl implements EmployeService{
 		
 		
 	@Autowired
-	private EmployeRepository employeServiceImpl;
+	private EmployeRepository employeRepository;
+	
+	
 
 	@Override
 	public List<Employe> getAllEmploye() {
 		// TODO Auto-generated method stub
-		return employeServiceImpl.findAll();
+		return employeRepository.findAll();
 	}
 
 	@Override
 	public void saveEmploye(Employe employe) {
-		this.employeServiceImpl.save(employe);
+		this.employeRepository.save(employe);
 		
+	}
+
+	@Override
+	public Employe getEmployeById(long id) {
+		Optional<Employe> optional = employeRepository.findById(id);
+		Employe employe = null;
+		if(optional.isPresent()){
+			
+			employe = optional.get();
+			
+		}else {
+			throw new RuntimeException("Funcionario não encontrado" + id  );
+		}
+		  
+		
+		return employe;
 	}
 	
 	

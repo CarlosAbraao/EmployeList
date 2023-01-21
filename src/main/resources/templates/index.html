@@ -8,6 +8,23 @@
 
 
 	<link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+	
+	
+	
+	<style>
+	body{
+		
+		background-color:#280659;
+	}
+	
+	
+	h1{
+		color:white;
+		margin-bottom: 50px;
+	}
+	
+	</style>
+	
 </head>
 
 <body>
@@ -35,9 +52,16 @@
                     <td th:text="${employe.firtName}"></td>
                     <td th:text="${employe.lastName}"></td>
                     <td th:text="${employe.email}"></td>
+                    <td>
+                    
+                    		<a th:href="@{/showFormForUpdate/{id}(id=${employe.id})}" class="btn btn-primary">Editar</a> 
+                    		<a th:href="@{/showFormForDelete/{id}(id=${employe.id})}" class="btn btn-danger">Deletar</a>
+                    
+                    </td>
+            
                 </tr>
     
-  </tbody>
+  </tbody>   
 </table>
 
 

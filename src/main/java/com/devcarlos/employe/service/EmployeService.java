@@ -12,5 +12,7 @@ public interface EmployeService {
 	
 	public List<Employe> getAllEmploye();
 	void saveEmploye(Employe employe);
+	Employe getEmployeById(long id);
+	
 
 }

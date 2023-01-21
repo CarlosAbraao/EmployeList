@@ -10,12 +10,12 @@
 	<link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
 	
 	
+	
 	<style>
 	body{
 		
 		background-color:#280659;
 	}
-	
 	
 	h1{
 		color:white;
@@ -32,9 +32,11 @@
 
 
 
-		<h1>Adicionar Empregados</h1>
+		<h1>Editar Funcionario</h1>
 		
 		<form action="#" th:action="@{/saveEmploye}" th:object="${employe}" method="POST">
+		
+		<input type="hidden" th:field="*{id}" />
 		 
 		<input type="text" th:field="*{firtName}" placeholder= "Primeiro Nome" 
 		class="form-control mb-4 col-4">
@@ -46,7 +48,7 @@
 		<input type="text" th:field="*{email}" placeholder= "Email" 
 		class="form-control mb-4 col-4">
 		
-		<button type="submit" class="btn btn-info col-2">Salvar</button>
+		<button type="submit" class="btn btn-info col-2">Atualizar</button>
 		
 		
 		</form>
