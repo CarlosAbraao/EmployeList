@@ -30,9 +30,7 @@ public class EmployeController {
 	@GetMapping("/")
 	public String viewHomePage(Model model) {
 		
-		model.addAttribute("listEmploye", employeService.getAllEmploye());
-		
-		return "index";
+		return findPaginated(1, model);
 		
 		
 	}
