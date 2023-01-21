@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.devcarlos.employe.entities.Employe;
 import com.devcarlos.employe.service.EmployeService;
@@ -30,7 +31,7 @@ public class EmployeController {
 	@GetMapping("/")
 	public String viewHomePage(Model model) {
 		
-		return findPaginated(1, model);
+		return findPaginated(1, "firtName", "asc", model);
 		
 		
 	}
@@ -75,15 +76,23 @@ public class EmployeController {
 	
 	
 	@GetMapping("/page/{pageNo}")
-	public String findPaginated(@PathVariable (value= "pageNo") int pageNo, Model model) {
+	public String findPaginated(@PathVariable (value= "pageNo") int pageNo, 
+			
+			@RequestParam("sortField") String sortField,
+			@RequestParam("sortDir") String sortDir,
+			Model model) {
 		int pageSize = 5 ;
 		
-		Page <Employe> page = employeService.findPaginated(pageNo, pageSize);
+		Page <Employe> page = employeService.findPaginated(pageNo, pageSize,sortField, sortDir);
 		List<Employe> listEmployes = page.getContent();
 		
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("sortField", sortField);
+		model.addAttribute("sortDir", sortDir.equals("asc") ? "desc" : "asc");
+		
+		
 		model.addAttribute("listEmploye", listEmployes);
 		return "index";
 		
