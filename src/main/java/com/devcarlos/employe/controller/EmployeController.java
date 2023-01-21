@@ -1,6 +1,9 @@
 package com.devcarlos.employe.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,6 +73,23 @@ public class EmployeController {
 	public String deleteEmploye(@PathVariable(value = "id") long id) {
 		this.employeService.deleteEmployeByid(id);
 		return "redirect:/";
+	}
+	
+	
+	@GetMapping("/page/{pageNo}")
+	public String findPaginated(@PathVariable (value= "pageNo") int pageNo, Model model) {
+		int pageSize = 5 ;
+		
+		Page <Employe> page = employeService.findPaginated(pageNo, pageSize);
+		List<Employe> listEmployes = page.getContent();
+		
+		model.addAttribute("currentPage", pageNo);
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("listEmploye", listEmployes);
+		return "index";
+		
+		
 	}
 
 }

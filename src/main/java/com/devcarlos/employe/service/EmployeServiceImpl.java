@@ -4,15 +4,21 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.devcarlos.employe.entities.Employe;
 import com.devcarlos.employe.repository.EmployeRepository;
 
 
+
 @Service
 public class EmployeServiceImpl implements EmployeService{
 		
+	
+	
 		
 	@Autowired
 	private EmployeRepository employeRepository;
@@ -51,6 +57,16 @@ public class EmployeServiceImpl implements EmployeService{
 	public void deleteEmployeByid(long id) {
 		this.employeRepository.deleteById(id);
 		
+	}
+
+	
+	
+	
+	
+	@Override
+	public Page<Employe> findPaginated(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo -1 , pageSize);
+		return this.employeRepository.findAll(pageable);
 	}
 	
 	
