@@ -20,9 +20,8 @@ public class Role {
 	
 	
 	
-	public Role(Long id, String name) {
+	public Role(String name) {
 		super();
-		this.id = id;
 		this.name = name;
 	}
 	public Long getId() {
